@@ -12,16 +12,20 @@
 
 import os
 import fire
+import sys
 
 
-def main(input_text, h=False, p=False):
+def main(input_text=None, h=False, p=False):
+    if input_text is False:
+        input_text = sys.stdin.read()
+
     if h:
         text = str(input_text)
         hex_text = "".join("{:02x}".format(ord(c)) for c in text)
         print("'%s'" % (hex_text))
     if p:
         text = str(input_text)
-        text = bytearray.fromhex(text).decode()
+        text = bytearray.fromhex(text).decode("latin1")
         print("'%s'" % (text))
 
 
