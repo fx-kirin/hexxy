@@ -16,13 +16,16 @@ import sys
 
 
 def main(input_text=None, h=False, p=False):
-    if input_text is False:
-        input_text = sys.stdin.read()
+    if input_text is None:
+        input_text = sys.stdin.buffer.read()[:-1]
 
     if h:
-        text = str(input_text)
-        hex_text = "".join("{:02x}".format(ord(c)) for c in text)
-        print("'%s'" % (hex_text))
+        if isinstance(input_text, bytes):
+            print(input_text.hex())
+        else:
+            text = str(input_text)
+            hex_text = "".join("{:02x}".format(ord(c)) for c in text)
+            print("'%s'" % (hex_text))
     if p:
         text = str(input_text)
         text = bytearray.fromhex(text).decode("latin1")

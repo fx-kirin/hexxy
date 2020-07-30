@@ -27,7 +27,7 @@ def get_requires():
 
 setup(
     name="hexxy",
-    version="0.2.0",
+    version="0.2.1",
     url="https://github.com/fx-kirin/hexxy",
     license="MIT",
     author="fx-kirin",
